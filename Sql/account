@@ -1,0 +1,23 @@
+-- public.account definition
+
+-- Drop table
+
+-- DROP TABLE account;
+
+CREATE TABLE account (
+	account_id serial4 NOT NULL,
+	"name" varchar(100) NOT NULL,
+	email varchar(100) NOT NULL,
+	"password" varchar(100) NOT NULL,
+	phone varchar(100) NOT NULL,
+	age int4 NOT NULL,
+	"mode" int4 NOT NULL,
+	photo bytea NULL,
+	create_date varchar(100) NOT NULL,
+	update_date varchar(100) NOT NULL,
+	last_login_date varchar(100) NOT NULL,
+	is_active bool NOT NULL DEFAULT true,
+	CONSTRAINT account_pk PRIMARY KEY (account_id),
+	CONSTRAINT account_un UNIQUE (email),
+	CONSTRAINT account_un2 UNIQUE (phone)
+);

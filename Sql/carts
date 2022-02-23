@@ -1,0 +1,13 @@
+-- public.carts definition
+
+-- Drop table
+
+-- DROP TABLE carts;
+
+CREATE TABLE carts (
+	cart_id serial4 NOT NULL,
+	barcode varchar(100) NOT NULL,
+	create_date varchar(100) NOT NULL,
+	CONSTRAINT carts_pk PRIMARY KEY (cart_id),
+	CONSTRAINT carts_un UNIQUE (barcode)
+);

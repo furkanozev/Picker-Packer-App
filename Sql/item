@@ -1,0 +1,23 @@
+-- public.item definition
+
+-- Drop table
+
+-- DROP TABLE item;
+
+CREATE TABLE item (
+	"name" varchar(100) NOT NULL,
+	price float4 NOT NULL,
+	barcode varchar(100) NOT NULL,
+	item_id int4 NOT NULL DEFAULT nextval('items_item_id_seq'::regclass),
+	category_id int4 NOT NULL,
+	create_date varchar(100) NOT NULL,
+	update_date varchar(100) NOT NULL,
+	CONSTRAINT items_pk PRIMARY KEY (item_id),
+	CONSTRAINT items_un UNIQUE (barcode),
+	CONSTRAINT items_un2 UNIQUE (name)
+);
+
+
+-- public.item foreign keys
+
+ALTER TABLE public.item ADD CONSTRAINT items_fk FOREIGN KEY (category_id) REFERENCES category(category_id) ON UPDATE CASCADE;

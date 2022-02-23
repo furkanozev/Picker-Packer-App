@@ -1,0 +1,31 @@
+-- public.pickerorders definition
+
+-- Drop table
+
+-- DROP TABLE pickerorders;
+
+CREATE TABLE pickerorders (
+	order_id int4 NOT NULL DEFAULT nextval('orders_order_id_seq'::regclass),
+	cart_id int4 NULL,
+	"date" varchar(100) NOT NULL,
+	item_amount int4 NOT NULL,
+	"name" varchar(100) NOT NULL,
+	note varchar(100) NOT NULL,
+	phone varchar(100) NOT NULL,
+	status int4 NOT NULL DEFAULT 0,
+	account_id int4 NOT NULL,
+	is_visible bool NOT NULL DEFAULT true,
+	price float4 NOT NULL,
+	last_price float4 NOT NULL,
+	create_date varchar(100) NOT NULL,
+	update_date varchar(100) NOT NULL,
+	address varchar(100) NOT NULL,
+	CONSTRAINT orders_pk PRIMARY KEY (order_id),
+	CONSTRAINT orders_un UNIQUE (cart_id)
+);
+
+
+-- public.pickerorders foreign keys
+
+ALTER TABLE public.pickerorders ADD CONSTRAINT orders_fk FOREIGN KEY (cart_id) REFERENCES carts(cart_id) ON UPDATE CASCADE;
+ALTER TABLE public.pickerorders ADD CONSTRAINT orders_fk2 FOREIGN KEY (account_id) REFERENCES account(account_id) ON UPDATE CASCADE;

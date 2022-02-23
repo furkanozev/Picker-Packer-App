@@ -1,0 +1,23 @@
+-- public.pickerorderitems definition
+
+-- Drop table
+
+-- DROP TABLE pickerorderitems;
+
+CREATE TABLE pickerorderitems (
+	id int4 NOT NULL DEFAULT nextval('orderitems_id_seq'::regclass),
+	order_id int4 NOT NULL,
+	item_id int4 NOT NULL,
+	amount int4 NOT NULL,
+	is_added bool NOT NULL DEFAULT false,
+	cart_amount int4 NOT NULL DEFAULT 0,
+	is_deleted bool NOT NULL DEFAULT false,
+	alternative int4 NULL,
+	CONSTRAINT orderitems_pk PRIMARY KEY (id)
+);
+
+
+-- public.pickerorderitems foreign keys
+
+ALTER TABLE public.pickerorderitems ADD CONSTRAINT orderitems_fk FOREIGN KEY (order_id) REFERENCES pickerorders(order_id) ON UPDATE CASCADE;
+ALTER TABLE public.pickerorderitems ADD CONSTRAINT orderitems_fk_1 FOREIGN KEY (item_id) REFERENCES item(item_id) ON UPDATE CASCADE;

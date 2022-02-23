@@ -1,0 +1,1 @@
+from application.routes import app

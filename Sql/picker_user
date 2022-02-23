@@ -1,0 +1,21 @@
+-- public.picker_user definition
+
+-- Drop table
+
+-- DROP TABLE picker_user;
+
+CREATE TABLE picker_user (
+	account_id int4 NOT NULL,
+	picker_active bool NOT NULL DEFAULT true,
+	open_order int4 NOT NULL DEFAULT 0,
+	cancel_order int4 NOT NULL DEFAULT 0,
+	complete_order int4 NOT NULL DEFAULT 0,
+	picker_id serial4 NOT NULL,
+	CONSTRAINT picker_user_pk PRIMARY KEY (picker_id),
+	CONSTRAINT picker_user_un UNIQUE (account_id)
+);
+
+
+-- public.picker_user foreign keys
+
+ALTER TABLE public.picker_user ADD CONSTRAINT picker_user_fk FOREIGN KEY (account_id) REFERENCES account(account_id) ON DELETE CASCADE ON UPDATE CASCADE;

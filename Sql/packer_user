@@ -1,0 +1,21 @@
+-- public.packer_user definition
+
+-- Drop table
+
+-- DROP TABLE packer_user;
+
+CREATE TABLE packer_user (
+	account_id int4 NOT NULL,
+	packer_active bool NOT NULL DEFAULT true,
+	open_order int4 NOT NULL DEFAULT 0,
+	cancel_order int4 NOT NULL DEFAULT 0,
+	complete_order int4 NOT NULL DEFAULT 0,
+	packer_id int4 NOT NULL DEFAULT nextval('packer_user_picker_id_seq'::regclass),
+	CONSTRAINT packer_user_pk PRIMARY KEY (packer_id),
+	CONSTRAINT packer_user_un UNIQUE (account_id)
+);
+
+
+-- public.packer_user foreign keys
+
+ALTER TABLE public.packer_user ADD CONSTRAINT packer_user_fk FOREIGN KEY (account_id) REFERENCES account(account_id) ON DELETE CASCADE ON UPDATE CASCADE;

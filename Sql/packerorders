@@ -1,0 +1,34 @@
+-- public.packerorders definition
+
+-- Drop table
+
+-- DROP TABLE packerorders;
+
+CREATE TABLE packerorders (
+	order_id serial4 NOT NULL,
+	cart_id int4 NULL,
+	"date" varchar(100) NOT NULL,
+	item_amount int4 NOT NULL,
+	"name" varchar(100) NOT NULL,
+	note varchar(100) NOT NULL,
+	phone varchar(100) NOT NULL,
+	status int4 NOT NULL DEFAULT 0,
+	account_id int4 NOT NULL,
+	is_visible bool NOT NULL DEFAULT true,
+	price float4 NOT NULL,
+	last_price float4 NOT NULL,
+	create_date varchar(100) NOT NULL,
+	update_date varchar(100) NOT NULL,
+	address varchar(100) NOT NULL,
+	cold_chain bool NOT NULL,
+	is_collected bool NOT NULL,
+	is_prepare bool NOT NULL DEFAULT false,
+	CONSTRAINT orders_pk_1 PRIMARY KEY (order_id),
+	CONSTRAINT orders_un_1 UNIQUE (cart_id)
+);
+
+
+-- public.packerorders foreign keys
+
+ALTER TABLE public.packerorders ADD CONSTRAINT packerorders_fk FOREIGN KEY (cart_id) REFERENCES carts(cart_id) ON UPDATE CASCADE;
+ALTER TABLE public.packerorders ADD CONSTRAINT packerorders_fk_1 FOREIGN KEY (account_id) REFERENCES account(account_id) ON UPDATE CASCADE;
